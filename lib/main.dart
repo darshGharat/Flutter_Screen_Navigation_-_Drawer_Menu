@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:meal_app/screens/tab_screen.dart';
 
 var themeColor = ColorScheme.fromSeed(
     seedColor: const Color.fromARGB(31, 176, 84, 4));
 
 void main() {
-  runApp(const App());
+  runApp(const ProviderScope(child: App()));
 }
 
 class App extends StatelessWidget {

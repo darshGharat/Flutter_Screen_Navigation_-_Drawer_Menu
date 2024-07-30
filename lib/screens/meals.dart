@@ -5,18 +5,17 @@ import 'package:meal_app/widget/meal_list_item.dart';
 
 class Meals extends StatelessWidget {
   const Meals(
-      {super.key, this.title, required this.mealList, required this.updateFav});
+      {super.key, this.title, required this.mealList});
 
   final String? title;
   final List<Meal> mealList;
-  final void Function(Meal meal) updateFav;
 
   void _selectMeal(BuildContext context, Meal data) {
     Navigator.push(
         context,
         MaterialPageRoute(
             builder: (ctx) => MealDetail(
-                  meal: data, updateFav: updateFav
+                  meal: data
                 )));
   }
 

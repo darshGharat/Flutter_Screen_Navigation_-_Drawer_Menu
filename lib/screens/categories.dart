@@ -6,9 +6,8 @@ import 'package:meal_app/widget/category_grid_item.dart';
 import 'package:meal_app/models/category.dart';
 
 class Categories extends StatelessWidget {
-  const Categories(this.updateFav, this.availableMeals, {super.key});
+  const Categories(this.availableMeals, {super.key});
 
-  final void Function(Meal meal) updateFav;
   final List<Meal> availableMeals;
 
   void _selectCategory(BuildContext context, Category data) {
@@ -19,8 +18,7 @@ class Categories extends StatelessWidget {
         MaterialPageRoute(
             builder: (ctx) => Meals(
                   title: data.title,
-                  mealList: filteredMeal,
-                  updateFav: updateFav,
+                  mealList: filteredMeal
                 )));
   }
 

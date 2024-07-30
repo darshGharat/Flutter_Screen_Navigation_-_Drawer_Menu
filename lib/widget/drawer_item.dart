@@ -1,20 +1,21 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:meal_app/provider/filter_provider.dart';
 
-class DrawerItem extends StatelessWidget{
-  const DrawerItem({super.key, required this.title, required this.subtitle, required this.onChanged,required this.isChecked});
+class DrawerItem extends ConsumerWidget{
+  const DrawerItem({super.key, required this.title, required this.subtitle, required this.filter});
 
   final String title;
   final String subtitle;
-  final bool isChecked;
-  final void Function(bool isChecked, String identifier) onChanged;
+  final Filter filter;
   
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
+    final activeFilter = ref.watch(filterProvider);
     
     return SwitchListTile(
-            value: isChecked,
-            onChanged: (value) => { onChanged(value,title) },
+            value: activeFilter[filter]!,
+            onChanged: (value) => { ref.read(filterProvider.notifier).setFilter(filter, value)},
             title: Text(
               title,
               style: Theme.of(context)
