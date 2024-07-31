@@ -4,7 +4,8 @@ import 'package:meal_app/widget/meal_item_tret.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class MealListItem extends StatelessWidget {
-  const MealListItem({super.key, required this.meal, required this.selectedMeal});
+  const MealListItem(
+      {super.key, required this.meal, required this.selectedMeal});
 
   final Meal meal;
   final Function(BuildContext ctx, Meal meal) selectedMeal;
@@ -27,14 +28,19 @@ class MealListItem extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       elevation: 2,
       child: InkWell(
-          onTap: () { selectedMeal(context,meal);},
+          onTap: () {
+            selectedMeal(context, meal);
+          },
           child: Stack(children: [
-            FadeInImage(
-              placeholder: MemoryImage(kTransparentImage),
-              image: NetworkImage(meal.imageUrl),
-              height: 200,
-              width: double.infinity,
-              fit: BoxFit.fill,
+            Hero(
+              tag: meal.id,
+              child: FadeInImage(
+                placeholder: MemoryImage(kTransparentImage),
+                image: NetworkImage(meal.imageUrl),
+                height: 200,
+                width: double.infinity,
+                fit: BoxFit.fill,
+              ),
             ),
             Positioned(
               bottom: 0,

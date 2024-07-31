@@ -35,13 +35,25 @@ class MealDetail extends ConsumerWidget {
                       const SnackBar(content: Text("Meal removed from List")));
                 }
               },
-              icon: Icon(isFavMeal ? Icons.star : Icons.star_border))
+              icon: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 200),
+                transitionBuilder: (child, animation) {
+                  return RotationTransition(
+                    turns: Tween(begin: 0.9, end: 1.0).animate(animation),
+                    child: child,
+                  );
+                },
+                child: Icon(
+                  isFavMeal ? Icons.star : Icons.star_border,
+                  key: ValueKey(isFavMeal),
+                ),
+              ))
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.network(meal.imageUrl),
+            Hero(tag: meal.id, child: Image.network(meal.imageUrl)),
             const SizedBox(
               height: 24,
             ),
